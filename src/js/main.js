@@ -95,6 +95,7 @@ function paintFavorites() {
     htmlCode += `</li>`;
   }
   favBoxList.innerHTML = htmlCode;
+  removeFromFavList();
 }
 //PARA ELIMINAR CADA FAVORITO UNO POR UNO CON EL BÓTON
 function removeFromList(ev) {
@@ -103,6 +104,7 @@ function removeFromList(ev) {
   favorites.splice(favorites.indexOf(serie), 1);
   localStorage.setItem('favorites', JSON.stringify(favorites));
   favBoxList.removeChild(ev.currentTarget.parentElement);
+  paintFavorites();
 }
 
 //BORRAR LA BÚSQUEDA
