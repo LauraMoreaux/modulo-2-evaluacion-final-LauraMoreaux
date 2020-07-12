@@ -1,0 +1,115 @@
+body {
+  font-family: $font-secondary;
+  .main {
+    text-transform: capitalize;
+    font-size: rem(22);
+    min-height: 100vh;
+
+    & .wrapper {
+      padding: 50px 50px 0px 50px;
+      height: 100%;
+
+      & .search-form {
+        padding: 15px;
+        & .search-label {
+          font-size: rem(25);
+        }
+        & .search-input {
+          margin: 0px 40px;
+          height: 70px;
+          border-radius: 40px;
+          padding-left: 15px;
+        }
+
+        input::placeholder {
+          padding-left: 15px;
+        }
+
+        & .search-button {
+          background-color: $color-back;
+          display: inline-block;
+          text-align: center;
+          height: 70px;
+          padding: 10px;
+          font-size: rem(30);
+          font-weight: 900;
+          border-radius: 10%;
+        }
+      }
+    }
+  }
+}
+
+.results {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: center;
+  text-align: center;
+  margin: 50px;
+  min-height: 100vh;
+  background-image: url(../images/pop-corn.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+}
+
+.js-series-list {
+  max-width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+.js-fav-box {
+  width: 40%;
+  .fav-title {
+    margin-top: 20px;
+    font-size: rem(50);
+  }
+
+  .fav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    margin: 0px 20px 20px 0px;
+    background-color: white;
+    border-radius: 30px;
+  }
+}
+li {
+  display: inline-block;
+  margin: 15px;
+  border-radius: 20px;
+  max-width: 210px;
+  max-height: 500px;
+
+  h3 {
+    display: inline-block;
+    padding-top: 15px;
+    font-size: rem(30);
+  }
+
+  img {
+    border-radius: 20px;
+  }
+}
+.clear-btn {
+  font-family: $font-main;
+  padding: 5px;
+  margin: 15px;
+  border-radius: 50%;
+  background-color: $color-back;
+  box-shadow: 5px 5px 5px 5px $color-primary;
+  color: black;
+  font-size: rem(25);
+}
+
+.change-color {
+  background-color: $color-black;
+  color: $color-white;
+}
