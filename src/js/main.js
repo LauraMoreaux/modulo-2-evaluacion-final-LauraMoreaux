@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('Todo va bien');
-
 //ARRAYS
 let series = [];
 let favorites = [];
@@ -20,11 +18,9 @@ const form = document.querySelector('.js-search-form');
 //FECTH AL HACER CLICK
 function handlerClickButton() {
   getFromLocalStorage();
-  console.log('Me han clickado');
   fetch(`http://api.tvmaze.com/search/shows?q=${searchInput.value}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log('Me llega info');
       series = data;
       paintSeries();
       // checkFavorites();
@@ -55,16 +51,11 @@ function addToFavList(ev) {
   const serie = findSerie(id, series);
   if (findSerie(id, favorites)) {
     ev.currentTarget.classList.remove('change-color');
-    console.log('Ya estaba en favoritos', favorites.indexOf(serie));
     favorites.splice(favorites.indexOf(serie), 1);
     localStorage.setItem('favorites', JSON.stringify(favorites));
-    console.log('Ya estaba en favoritos', favorites.indexOf(serie));
   } else {
     ev.currentTarget.classList.add('change-color');
     saveFavorite(serie);
-    console.log(
-      'No estaba en favoritos, le pongo el estilo y le hago push y la meto en el local'
-    );
   }
 }
 
@@ -79,11 +70,9 @@ function findSerie(id, series) {
 function saveFavorite(serie) {
   favorites.push(serie);
   localStorage.setItem('favorites', JSON.stringify(favorites));
-  console.log(favorites);
 }
 //PARA PINTAR FAVORITOS
 function paintFavorites() {
-  console.log('He entrado en la función de pintar');
   let htmlCode = '';
   for (let i = 0; i < favorites.length; i++) {
     htmlCode += `<li class="box-results js-box-results" id="${favorites[i].show.id}">`;
@@ -125,17 +114,15 @@ function resetFav() {
 
 //GET FROM STORAGE
 function getFromLocalStorage() {
-  console.log('Estoy tomando lo que hay en el local');
   if (JSON.parse(localStorage.getItem('favorites'))) {
     favorites = JSON.parse(localStorage.getItem('favorites'));
-    console.log('Parece que sí hay cosas en local');
+
     for (const serie of favorites) {
       paintFavorites(series);
     }
   } else {
     favBoxList.innerHTML = '';
     localStorage.removeItem('favorites');
-    console.log('no hay nada en local storage');
   }
 }
 
@@ -149,7 +136,6 @@ resetFavButton.addEventListener('click', resetFav);
 
 function liListener() {
   const fav = document.querySelectorAll('.js-box-results');
-  console.log(fav);
   for (const elem of fav) {
     elem.addEventListener('click', addToFavList);
     elem.addEventListener('click', paintFavorites);
