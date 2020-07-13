@@ -27,6 +27,7 @@ function handlerClickButton() {
       console.log('Me llega info');
       series = data;
       paintSeries();
+      // checkFavorites();
     });
 }
 
@@ -45,7 +46,7 @@ function paintSeries() {
     htmlCode += `</li>`;
   }
   seriesBoxList.innerHTML = htmlCode;
-  liListeners();
+  liListener();
 }
 
 //REGISTRA EL CLICK PARA AÑADIR A FAVORITOS Y CAMBIA EL ESTILO Y EL ARRAY
@@ -54,9 +55,10 @@ function addToFavList(ev) {
   const serie = findSerie(id, series);
   if (findSerie(id, favorites)) {
     ev.currentTarget.classList.remove('change-color');
-    favorites.splice(favorites.indexOf(id), 1);
+    console.log('Ya estaba en favoritos', favorites.indexOf(serie));
+    favorites.splice(favorites.indexOf(serie), 1);
     localStorage.setItem('favorites', JSON.stringify(favorites));
-    console.log('Ya estaba en favoritos', id);
+    console.log('Ya estaba en favoritos', favorites.indexOf(serie));
   } else {
     ev.currentTarget.classList.add('change-color');
     saveFavorite(serie);
@@ -136,6 +138,8 @@ function getFromLocalStorage() {
     console.log('no hay nada en local storage');
   }
 }
+
+removeFromFavList();
 getFromLocalStorage();
 
 //LISTENERS
@@ -143,7 +147,7 @@ searchBtn.addEventListener('click', handlerClickButton);
 resetButton.addEventListener('click', resetForm);
 resetFavButton.addEventListener('click', resetFav);
 
-function liListeners() {
+function liListener() {
   const fav = document.querySelectorAll('.js-box-results');
   console.log(fav);
   for (const elem of fav) {
@@ -151,7 +155,6 @@ function liListeners() {
     elem.addEventListener('click', paintFavorites);
   }
 }
-removeFromFavList();
 
 function removeFromFavList() {
   const resetFavSerie = document.querySelectorAll('.js-clear-btn');
