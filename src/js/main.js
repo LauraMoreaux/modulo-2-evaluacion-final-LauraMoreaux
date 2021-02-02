@@ -18,7 +18,7 @@ const form = document.querySelector('.js-search-form');
 //FECTH AL HACER CLICK
 function handlerClickButton() {
   getFromLocalStorage();
-  fetch(`http://api.tvmaze.com/search/shows?q=${searchInput.value}`)
+  fetch(`//api.tvmaze.com/search/shows?q=${searchInput.value}`)
     .then((response) => response.json())
     .then((data) => {
       series = data;
